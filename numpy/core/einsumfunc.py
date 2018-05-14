@@ -428,7 +428,10 @@ def _parse_einsum_input(operands):
                 if s is Ellipsis:
                     subscripts += "..."
                 elif isinstance(s, int):
-                    subscripts += einsum_symbols[s]
+                    if s > 0 and s < 52:
+                        subscripts += einsum_symbols[s]
+                    else:
+                        raise ValueError("Subscript is not within the valid range [0,52]")
                 else:
                     raise TypeError("For this input type lists must contain "
                                     "either int or Ellipsis")
@@ -441,7 +444,10 @@ def _parse_einsum_input(operands):
                 if s is Ellipsis:
                     subscripts += "..."
                 elif isinstance(s, int):
-                    subscripts += einsum_symbols[s]
+                    if s > 0 and s < 52:
+                        subscripts += einsum_symbols[s]
+                    else:
+                        raise ValueError("Subscript is not within the valid range [0,52]")
                 else:
                     raise TypeError("For this input type lists must contain "
                                     "either int or Ellipsis")
